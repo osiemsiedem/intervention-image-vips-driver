@@ -23,6 +23,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [x] FitCommand
 - [x] FlipCommand
 - [x] GetSizeCommand
+- [x] GreyscaleCommand
 - [x] ResetCommand
 - [x] ResizeCommand
 - [x] SharpenCommand
@@ -32,7 +33,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] DestroyCommand
 - [ ] FillCommand
 - [ ] GammaCommand
-- [ ] GreyscaleCommand
 - [ ] HeightenCommand
 - [ ] InsertCommand
 - [ ] InterlaceCommand
@@ -41,8 +41,8 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] MaskCommand
 - [ ] OpacityCommand
 - [ ] PickColorCommand
-- [ ] PixelCommand
 - [ ] PixelateCommand
+- [ ] PixelCommand
 - [ ] ResizeCanvasCommand
 - [ ] RotateCommand
 - [ ] TrimCommand
