@@ -54,7 +54,7 @@ class InsertCommand extends AbstractCommand
 
                 $imageCore = $imageCore->composite([$imageCore, $watermarkCore], 2);
             } else {
-                $imageCore = $imageCore->insert($watermarkCore, $target->x, $target->y);
+                $imageCore = $imageCore->insert($watermarkCore->bandjoin(255), $target->x, $target->y);
             }
 
             $image->setCore($imageCore);
