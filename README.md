@@ -17,8 +17,9 @@ composer require osiemsiedem/intervention-image-vips-driver
 
 ### Commands
 
-- [x] BlurCommand
 - [x] BackupCommand
+- [x] BlurCommand
+- [x] FlipCommand
 - [x] GetSizeCommand
 - [x] ResetCommand
 - [x] ResizeCommand
@@ -30,7 +31,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] DestroyCommand
 - [ ] FillCommand
 - [ ] FitCommand
-- [ ] FlipCommand
 - [ ] GammaCommand
 - [ ] GreyscaleCommand
 - [ ] HeightenCommand

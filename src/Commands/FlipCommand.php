@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Exception;
 use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\NotSupportedException;
 
 class FlipCommand extends AbstractCommand
 {
@@ -13,11 +13,26 @@ class FlipCommand extends AbstractCommand
      * Execute the command.
      *
      * @param  \Intervention\Image\Image  $image
-     * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @return bool
      */
-    public function execute($image): void
+    public function execute($image): bool
     {
-        throw new NotSupportedException('Flip command is not supported by VIPS driver.');
+        $mode = $this->argument(0)->value('h');
+
+        try {
+            $core = $image->getCore();
+
+            if (in_array(strtolower($mode), [2, 'v', 'vert', 'vertical'])) {
+                $core = $core->flip('vertical');
+            } else {
+                $core = $core->flip('horizontal');
+            }
+
+            $image->setCore($core);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }
