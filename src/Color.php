@@ -25,7 +25,7 @@ class Color extends AbstractColor
     public $blue;
 
     /**
-     * @var float
+     * @var int
      */
     public $alpha;
 
