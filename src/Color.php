@@ -199,10 +199,10 @@ class Color extends AbstractColor
     /**
      * Convert the RGBA value (0-1) to VIPS value (0-255).
      *
-     * @param  float  $input
+     * @param  float|string  $input
      * @return int
      */
-    protected function alpha2vips(float $input): int
+    protected function alpha2vips($input): int
     {
         return (int) ceil($input * 255);
     }
