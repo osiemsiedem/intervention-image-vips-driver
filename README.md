@@ -26,6 +26,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [x] GammaCommand
 - [x] GetSizeCommand
 - [x] GreyscaleCommand
+- [x] InsertCommand
 - [x] InvertCommand
 - [x] ResetCommand
 - [x] ResizeCommand
@@ -35,7 +36,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] ContrastCommand
 - [ ] FillCommand
 - [ ] HeightenCommand
-- [ ] InsertCommand
 - [ ] InterlaceCommand
 - [ ] LimitColorsCommand
 - [ ] MaskCommand
