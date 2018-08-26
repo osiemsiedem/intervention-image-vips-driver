@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\NotSupportedException;
 
 class DestroyCommand extends AbstractCommand
 {
@@ -13,11 +12,10 @@ class DestroyCommand extends AbstractCommand
      * Execute the command.
      *
      * @param  \Intervention\Image\Image  $image
-     * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @return bool
      */
-    public function execute($image): void
+    public function execute($image): bool
     {
-        throw new NotSupportedException('Destroy command is not supported by VIPS driver.');
+        return true;
     }
 }
