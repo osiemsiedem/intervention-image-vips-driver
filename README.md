@@ -19,6 +19,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 
 - [x] BackupCommand
 - [x] BlurCommand
+- [x] CropCommand
 - [x] FlipCommand
 - [x] GetSizeCommand
 - [x] ResetCommand
@@ -27,7 +28,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] BrightnessCommand
 - [ ] ColorizeCommand
 - [ ] ContrastCommand
-- [ ] CropCommand
 - [ ] DestroyCommand
 - [ ] FillCommand
 - [ ] FitCommand
