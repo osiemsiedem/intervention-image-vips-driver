@@ -31,6 +31,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [x] InvertCommand
 - [x] ResetCommand
 - [x] ResizeCommand
+- [x] RotateCommand
 - [x] SharpenCommand
 - [x] WidenCommand
 - [ ] BrightnessCommand
@@ -45,7 +46,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] PixelateCommand
 - [ ] PixelCommand
 - [ ] ResizeCanvasCommand
-- [ ] RotateCommand
 - [ ] TrimCommand
 
 ### Shapes

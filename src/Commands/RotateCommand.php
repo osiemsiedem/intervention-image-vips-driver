@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Exception;
+use Intervention\Image\Vips\Color;
 use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\NotSupportedException;
 
 class RotateCommand extends AbstractCommand
 {
@@ -13,11 +14,62 @@ class RotateCommand extends AbstractCommand
      * Execute the command.
      *
      * @param  \Intervention\Image\Image  $image
-     * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @return bool
      */
-    public function execute($image): void
+    public function execute($image): bool
     {
-        throw new NotSupportedException('Rotate command is not supported by VIPS driver.');
+        $angle = -$this->argument(0)
+            ->type('numeric')
+            ->required()
+            ->value() % 360;
+
+        $color = new Color($this->argument(1)->value());
+
+        try {
+            $core = $image->getCore();
+
+            switch ($angle) {
+                case 0:
+                    break;
+
+                case 90:
+                case -270:
+                    $core = $core->rot90();
+                    break;
+
+                case 180:
+                case -180:
+                    $core = $core->rot180();
+                    break;
+
+                case -90:
+                case 270:
+                    $core = $core->rot270();
+                    break;
+
+                default:
+                    if ($color->alpha > 0 && $color->alpha < 255) {
+                        $background = [$color->red, $color->green, $color->blue, $color->alpha];
+
+                        if ( ! $core->hasalpha()) {
+                            $core = $core->bandjoin(255);
+                        }
+                    } else {
+                        $background = [$color->red, $color->green, $color->blue];
+                    }
+
+                    $core = $core->similarity([
+                        'background' => $background,
+                        'angle'      => $angle,
+                    ]);
+                    break;
+            }
+
+            $image->setCore($core);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }
