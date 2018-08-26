@@ -17,6 +17,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 
 ### Commands
 
+- [x] GetSizeCommand
 - [ ] BackupCommand
 - [ ] BlurCommand
 - [ ] BrightnessCommand
@@ -28,7 +29,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] FitCommand
 - [ ] FlipCommand
 - [ ] GammaCommand
-- [ ] GetSizeCommand
 - [ ] GreyscaleCommand
 - [ ] HeightenCommand
 - [ ] InsertCommand
