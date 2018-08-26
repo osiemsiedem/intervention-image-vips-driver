@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Exception;
 use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\NotSupportedException;
 
 class BlurCommand extends AbstractCommand
 {
@@ -13,11 +13,24 @@ class BlurCommand extends AbstractCommand
      * Execute the command.
      *
      * @param  \Intervention\Image\Image  $image
-     * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @return bool
      */
-    public function execute($image): void
+    public function execute($image): bool
     {
-        throw new NotSupportedException('Blur command is not supported by VIPS driver.');
+        $amount = $this->argument(0)
+            ->between(0, 100)
+            ->value(1);
+
+        try {
+            $core = $image->getCore();
+
+            $core = $core->gaussblur($amount * 0.53);
+
+            $image->setCore($core);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
     }
 }

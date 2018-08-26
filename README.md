@@ -17,12 +17,12 @@ composer require osiemsiedem/intervention-image-vips-driver
 
 ### Commands
 
+- [x] BlurCommand
 - [x] BackupCommand
 - [x] GetSizeCommand
 - [x] ResetCommand
 - [x] ResizeCommand
 - [x] SharpenCommand
-- [ ] BlurCommand
 - [ ] BrightnessCommand
 - [ ] ColorizeCommand
 - [ ] ContrastCommand
