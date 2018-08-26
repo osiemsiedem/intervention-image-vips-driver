@@ -19,6 +19,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 
 - [x] BackupCommand
 - [x] GetSizeCommand
+- [x] ResetCommand
 - [x] ResizeCommand
 - [x] SharpenCommand
 - [ ] BlurCommand
@@ -42,7 +43,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] PickColorCommand
 - [ ] PixelCommand
 - [ ] PixelateCommand
-- [ ] ResetCommand
 - [ ] ResizeCanvasCommand
 - [ ] RotateCommand
 - [ ] TrimCommand
