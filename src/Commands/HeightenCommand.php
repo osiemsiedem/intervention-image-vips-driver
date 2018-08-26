@@ -4,20 +4,37 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-use Intervention\Image\Exception\NotSupportedException;
-
-class HeightenCommand extends AbstractCommand
+class HeightenCommand extends ResizeCommand
 {
     /**
      * Execute the command.
      *
      * @param  \Intervention\Image\Image  $image
-     * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @return bool
      */
-    public function execute($image): void
+    public function execute($image): bool
     {
-        throw new NotSupportedException('Heighten command is not supported by VIPS driver.');
+        $height = $this->argument(0)
+            ->type('digit')
+            ->required()
+            ->value();
+
+        $constraints = $this->argument(1)
+            ->type('closure')
+            ->value();
+
+        $this->arguments[0] = null;
+
+        $this->arguments[1] = $height;
+
+        $this->arguments[2] = function ($constraint) use ($constraints) {
+            $constraint->aspectRatio();
+
+            if (is_callable($constraints)) {
+                $constraints($constraint);
+            }
+        };
+
+        return parent::execute($image);
     }
 }
