@@ -20,7 +20,16 @@ class InvertCommand extends AbstractCommand
         try {
             $core = $image->getCore();
 
-            $core = $core->invert();
+            if ($core->hasalpha()) {
+                // https://github.com/jcupitt/libvips/issues/59#issuecomment-222351004
+                $flatten = $core->extract_band(0, ['n' => $core->bands - 1]);
+
+                $mask = $core->extract_band($core->bands - 1, ['n' => 1]);
+
+                $core = $flatten->invert()->bandjoin($mask);
+            } else {
+                $core = $core->invert();
+            }
 
             $image->setCore($core);
         } catch (Exception $e) {
