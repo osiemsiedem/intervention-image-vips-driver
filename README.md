@@ -30,6 +30,7 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [x] HeightenCommand
 - [x] InsertCommand
 - [x] InvertCommand
+- [x] OpacityCommand
 - [x] PickColorCommand
 - [x] PixelCommand
 - [x] ResetCommand
@@ -43,7 +44,6 @@ composer require osiemsiedem/intervention-image-vips-driver
 - [ ] InterlaceCommand
 - [ ] LimitColorsCommand
 - [ ] MaskCommand
-- [ ] OpacityCommand
 - [ ] PixelateCommand
 - [ ] ResizeCanvasCommand
 - [ ] TrimCommand
