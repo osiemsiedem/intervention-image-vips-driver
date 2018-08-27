@@ -63,9 +63,9 @@ class Color extends AbstractColor
             $alpha = $this->alpha2vips(1);
         }
 
-        $this->red = $red;
-        $this->green = $green;
-        $this->blue = $blue;
+        $this->red = (int) $red;
+        $this->green = (int) $green;
+        $this->blue = (int) $blue;
         $this->alpha = $alpha;
     }
 
@@ -78,9 +78,9 @@ class Color extends AbstractColor
     public function initFromString($value): void
     {
         if ($color = $this->rgbaFromString($value)) {
-            $this->red = $color[0];
-            $this->green = $color[1];
-            $this->blue = $color[2];
+            $this->red = (int) $color[0];
+            $this->green = (int) $color[1];
+            $this->blue = (int) $color[2];
             $this->alpha = $this->alpha2vips($color[3]);
         }
     }
@@ -158,7 +158,7 @@ class Color extends AbstractColor
      */
     public function getArray(): array
     {
-        return [$this->red, $this->green, $this->blue, round(1 - $this->alpha / 255, 2)];
+        return [$this->red, $this->green, $this->blue, round($this->alpha / 255, 2)];
     }
 
     /**
@@ -168,7 +168,7 @@ class Color extends AbstractColor
      */
     public function getRgba(): string
     {
-        return sprintf('rgba(%d, %d, %d, %.2F)', $this->red, $this->green, $this->blue, round(1 - $this->alpha / 255, 2));
+        return sprintf('rgba(%d, %d, %d, %.2F)', $this->red, $this->green, $this->blue, round($this->alpha / 255, 2));
     }
 
     /**
