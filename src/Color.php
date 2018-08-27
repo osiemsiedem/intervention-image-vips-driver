@@ -204,6 +204,14 @@ class Color extends AbstractColor
      */
     protected function alpha2vips($input): int
     {
+        if ($input > 1 && $input <= 255) {
+            return (int) $input;
+        }
+
+        if ($input > 255) {
+            $input /= 255;
+        }
+
         return (int) ceil($input * 255);
     }
 }
