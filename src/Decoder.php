@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips;
 
 use Imagick;
-use Jcupitt\Vips\Access;
 use Jcupitt\Vips\Image as VipsImage;
 use Intervention\Image\AbstractDecoder;
 use Intervention\Image\Image as InterventionImage;
@@ -21,7 +20,7 @@ class Decoder extends AbstractDecoder
      */
     public function initFromPath($path): InterventionImage
     {
-        return $this->initFromVips(VipsImage::newFromFile($path, ['access' => Access::SEQUENTIAL]));
+        return $this->initFromVips(VipsImage::newFromFile($path));
     }
 
     /**
