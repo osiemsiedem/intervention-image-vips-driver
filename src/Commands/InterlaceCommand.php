@@ -15,7 +15,7 @@ class InterlaceCommand extends AbstractCommand
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    public function execute($image): void
+    public function execute($image)
     {
         throw new NotSupportedException('Interlace command is not supported by VIPS driver.');
     }

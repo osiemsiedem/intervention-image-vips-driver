@@ -35,7 +35,7 @@ class Color extends AbstractColor
      * @param  int  $value
      * @return void
      */
-    public function initFromInteger($value): void
+    public function initFromInteger($value)
     {
         $this->alpha = ($value >> 24) & 0xFF;
         $this->red = ($value >> 16) & 0xFF;
@@ -49,7 +49,7 @@ class Color extends AbstractColor
      * @param  array  $value
      * @return void
      */
-    public function initFromArray($value): void
+    public function initFromArray($value)
     {
         $array = array_values($value);
 
@@ -75,7 +75,7 @@ class Color extends AbstractColor
      * @param  string  $value
      * @return void
      */
-    public function initFromString($value): void
+    public function initFromString($value)
     {
         if ($color = $this->rgbaFromString($value)) {
             $this->red = (int) $color[0];
@@ -92,7 +92,7 @@ class Color extends AbstractColor
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    public function initFromObject($value): void
+    public function initFromObject($value)
     {
         throw new NotSupportedException('VIPS color cannot be initiated from the ImagickPixel object.');
     }
@@ -105,7 +105,7 @@ class Color extends AbstractColor
      * @param  int  $blue
      * @return void
      */
-    public function initFromRgb($red, $green, $blue): void
+    public function initFromRgb($red, $green, $blue)
     {
         $this->red = (int) $red;
         $this->green = (int) $green;
@@ -122,7 +122,7 @@ class Color extends AbstractColor
      * @param  float  $alpha
      * @return void
      */
-    public function initFromRgba($red, $green, $blue, $alpha): void
+    public function initFromRgba($red, $green, $blue, $alpha)
     {
         $this->red = (int) $red;
         $this->green = (int) $green;

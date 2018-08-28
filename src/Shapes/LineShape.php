@@ -49,7 +49,7 @@ class LineShape extends AbstractShape
      * @param  string  $color
      * @return void
      */
-    public function color(string $color): void
+    public function color(string $color)
     {
         $this->color = $color;
     }
@@ -60,7 +60,7 @@ class LineShape extends AbstractShape
      * @param  int  $width
      * @return void
      */
-    public function width(int $width): void
+    public function width(int $width)
     {
         $this->width = $width;
     }

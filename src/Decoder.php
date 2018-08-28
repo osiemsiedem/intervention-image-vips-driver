@@ -52,7 +52,7 @@ class Decoder extends AbstractDecoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    public function initFromGdResource($resource): void
+    public function initFromGdResource($resource)
     {
         throw new NotSupportedException('VIPS driver cannot be initiated from the GD resource.');
     }
@@ -64,7 +64,7 @@ class Decoder extends AbstractDecoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    public function initFromImagick(Imagick $imagick): void
+    public function initFromImagick(Imagick $imagick)
     {
         throw new NotSupportedException('VIPS driver cannot be initiated from the Imagick object.');
     }

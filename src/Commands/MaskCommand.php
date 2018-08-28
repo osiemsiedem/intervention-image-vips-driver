@@ -15,7 +15,7 @@ class MaskCommand extends AbstractCommand
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    public function execute($image): void
+    public function execute($image)
     {
         throw new NotSupportedException('Mask command is not supported by VIPS driver.');
     }

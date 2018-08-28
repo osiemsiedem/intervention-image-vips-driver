@@ -64,7 +64,7 @@ class Encoder extends AbstractEncoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    protected function processGif(): void
+    protected function processGif()
     {
         throw new NotSupportedException('GIF format is not supported by VIPS driver.');
     }
@@ -75,7 +75,7 @@ class Encoder extends AbstractEncoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    protected function processTiff(): void
+    protected function processTiff()
     {
         throw new NotSupportedException('TIFF format is not supported by VIPS driver.');
     }
@@ -86,7 +86,7 @@ class Encoder extends AbstractEncoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    protected function processBmp(): void
+    protected function processBmp()
     {
         throw new NotSupportedException('BMP format is not supported by VIPS driver.');
     }
@@ -97,7 +97,7 @@ class Encoder extends AbstractEncoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    protected function processIco(): void
+    protected function processIco()
     {
         throw new NotSupportedException('ICO format is not supported by VIPS driver.');
     }
@@ -108,7 +108,7 @@ class Encoder extends AbstractEncoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    protected function processPsd(): void
+    protected function processPsd()
     {
         throw new NotSupportedException('PSD format is not supported by VIPS driver.');
     }
