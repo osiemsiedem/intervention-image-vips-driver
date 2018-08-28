@@ -27,7 +27,10 @@ class ResizeCommand extends AbstractCommand
 
             $size = $image->getSize()->resize($width, $height, $constraints);
 
-            $core = $this->resizeImage($core, $size->getWidth(), $size->getHeight());
+            $newWidth = (int) round($size->getWidth());
+            $newHeight = (int) round($size->getHeight());
+
+            $core = $this->resizeImage($core, $newWidth, $newHeight);
 
             $image->setCore($core);
         });

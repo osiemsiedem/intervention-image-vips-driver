@@ -45,7 +45,10 @@ class FitCommand extends AbstractCommand
 
             $core = $core->crop($sizeBefore->pivot->x, $sizeBefore->pivot->y, $sizeBefore->width, $sizeBefore->height);
 
-            $core = $this->resizeImage($core, $sizeAfter->getWidth(), $sizeAfter->getHeight());
+            $newWidth = (int) round($sizeAfter->getWidth());
+            $newHeight = (int) round($sizeAfter->getHeight());
+
+            $core = $this->resizeImage($core, $newWidth, $newHeight);
 
             $image->setCore($core);
         });
