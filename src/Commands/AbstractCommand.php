@@ -6,7 +6,6 @@ namespace Intervention\Image\Vips\Commands;
 
 use Closure;
 use Jcupitt\Vips\Image;
-use Jcupitt\Vips\Kernel;
 use Jcupitt\Vips\Exception;
 use Intervention\Image\Commands\AbstractCommand as BaseAbstractCommand;
 
