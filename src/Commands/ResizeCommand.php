@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
-use Intervention\Image\Commands\AbstractCommand;
-
 class ResizeCommand extends AbstractCommand
 {
     /**
@@ -25,7 +22,7 @@ class ResizeCommand extends AbstractCommand
             ->type('closure')
             ->value();
 
-        try {
+        return $this->handleCommand(function () use ($image, $width, $height, $constraints) {
             $core = $image->getCore();
 
             $size = $image->getSize()->resize($width, $height, $constraints);
@@ -33,10 +30,6 @@ class ResizeCommand extends AbstractCommand
             $core = $core->resize($size->getWidth() / $core->width, ['vscale' => $size->getHeight() / $core->height]);
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

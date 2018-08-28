@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Jcupitt\Vips\Image;
-use Jcupitt\Vips\Exception;
 use Intervention\Image\Size;
 use Intervention\Image\Point;
-use Intervention\Image\Commands\AbstractCommand;
 use Intervention\Image\Exception\InvalidArgumentException;
 
 class CropCommand extends AbstractCommand
@@ -48,7 +46,7 @@ class CropCommand extends AbstractCommand
 
         $position = new Point($x, $y);
 
-        try {
+        return $this->handleCommand(function () use ($image, $width, $height, $x, $y, $size, $position) {
             if (is_null($x) && is_null($y)) {
                 $position = $image
                     ->getSize()
@@ -61,10 +59,6 @@ class CropCommand extends AbstractCommand
             $core = $core->crop($position->x, $position->y, $size->width, $size->height);
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

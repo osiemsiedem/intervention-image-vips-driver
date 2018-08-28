@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Image;
-use Intervention\Image\Commands\AbstractCommand;
-
 class ResetCommand extends AbstractCommand
 {
     /**

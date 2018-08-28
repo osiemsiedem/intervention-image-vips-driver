@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
 use Intervention\Image\Vips\Color;
-use Intervention\Image\Commands\AbstractCommand;
 
 class PixelCommand extends AbstractCommand
 {
@@ -34,16 +32,12 @@ class PixelCommand extends AbstractCommand
             ->required()
             ->value();
 
-        try {
+        return $this->handleCommand(function () use ($image, $color, $x, $y) {
             $core = $image->getCore();
 
             $core = $core->draw_rect([$color->red, $color->green, $color->blue, $color->alpha], $x, $y, 1, 1);
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

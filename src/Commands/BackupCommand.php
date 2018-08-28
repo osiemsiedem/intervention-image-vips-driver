@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Intervention\Image\Commands\AbstractCommand;
-
 class BackupCommand extends AbstractCommand
 {
     /**
@@ -18,10 +16,10 @@ class BackupCommand extends AbstractCommand
     {
         $name = $this->argument(0)->value();
 
-        $clone = clone $image;
+        return $this->handleCommand(function () use ($image, $name) {
+            $clone = clone $image;
 
-        $image->setBackup($clone->getCore(), $name);
-
-        return true;
+            $image->setBackup($clone->getCore(), $name);
+        });
     }
 }

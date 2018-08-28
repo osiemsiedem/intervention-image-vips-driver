@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
-use Intervention\Image\Commands\AbstractCommand;
-
 class InvertCommand extends AbstractCommand
 {
     /**
@@ -17,14 +14,13 @@ class InvertCommand extends AbstractCommand
      */
     public function execute($image): bool
     {
-        try {
+        return $this->handleCommand(function () use ($image) {
             $core = $image->getCore();
 
             if ($core->hasalpha()) {
-                // https://github.com/jcupitt/libvips/issues/59#issuecomment-222351004
-                $flatten = $core->extract_band(0, ['n' => $core->bands - 1]);
+                $flatten = $this->flattenImage($core);
 
-                $mask = $core->extract_band($core->bands - 1, ['n' => 1]);
+                $mask = $this->extractAlphaChannel($core);
 
                 $core = $flatten->invert()->bandjoin($mask);
             } else {
@@ -32,10 +28,6 @@ class InvertCommand extends AbstractCommand
             }
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

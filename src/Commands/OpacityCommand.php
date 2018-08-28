@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
-use Intervention\Image\Vips\Driver;
-use Intervention\Image\Commands\AbstractCommand;
-
 class OpacityCommand extends AbstractCommand
 {
     /**
@@ -23,11 +19,11 @@ class OpacityCommand extends AbstractCommand
             ->required()
             ->value() / 100;
 
-        try {
+        return $this->handleCommand(function () use ($image, $transparency) {
             $core = $image->getCore();
 
             if ( ! $core->hasalpha()) {
-                $background = (new Driver)->newImage($core->width, $core->height, [0, 0, 0, 0])->getCore();
+                $background = $image->getDriver()->newImage($core->width, $core->height, [0, 0, 0, 0])->getCore();
 
                 $core = $background->composite([$background, $core], 2);
             }
@@ -35,10 +31,6 @@ class OpacityCommand extends AbstractCommand
             $core = $core->multiply([1.0, 1.0, 1.0, $transparency]);
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

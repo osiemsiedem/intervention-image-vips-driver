@@ -6,8 +6,6 @@ namespace Intervention\Image\Vips\Commands;
 
 use Jcupitt\Vips\Image;
 use Jcupitt\Vips\Extend;
-use Jcupitt\Vips\Exception;
-use Intervention\Image\Commands\AbstractCommand;
 
 class InsertCommand extends AbstractCommand
 {
@@ -35,7 +33,7 @@ class InsertCommand extends AbstractCommand
             ->type('digit')
             ->value(0);
 
-        try {
+        return $this->handleCommand(function () use ($image, $source, $position, $x, $y) {
             $watermark = $image->getDriver()->init($source);
 
             $imageCore = $image->getCore();
@@ -58,10 +56,6 @@ class InsertCommand extends AbstractCommand
             }
 
             $image->setCore($imageCore);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

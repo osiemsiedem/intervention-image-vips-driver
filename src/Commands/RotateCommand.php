@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
 use Intervention\Image\Vips\Color;
-use Intervention\Image\Commands\AbstractCommand;
 
 class RotateCommand extends AbstractCommand
 {
@@ -25,7 +23,7 @@ class RotateCommand extends AbstractCommand
 
         $color = new Color($this->argument(1)->value());
 
-        try {
+        return $this->handleCommand(function () use ($image, $angle, $color) {
             $core = $image->getCore();
 
             switch ($angle) {
@@ -66,10 +64,6 @@ class RotateCommand extends AbstractCommand
             }
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

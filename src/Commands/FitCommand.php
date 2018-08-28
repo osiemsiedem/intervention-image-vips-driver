@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Jcupitt\Vips\Image;
-use Jcupitt\Vips\Exception;
 use Intervention\Image\Size;
-use Intervention\Image\Commands\AbstractCommand;
 
 class FitCommand extends AbstractCommand
 {
@@ -38,7 +36,7 @@ class FitCommand extends AbstractCommand
 
         $size = new Size($width, $height);
 
-        try {
+        return $this->handleCommand(function () use ($image, $width, $height, $constraints, $position, $size) {
             $sizeBefore = $image->getSize()->fit($size, $position);
 
             $sizeAfter = (clone $sizeBefore)->resize($width, $height, $constraints);
@@ -50,10 +48,6 @@ class FitCommand extends AbstractCommand
             $core = $core->resize($sizeAfter->getWidth() / $core->width, ['vscale' => $sizeAfter->getHeight() / $core->height]);
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

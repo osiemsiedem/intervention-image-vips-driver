@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
 use Intervention\Image\Vips\Color;
-use Intervention\Image\Commands\AbstractCommand;
 
 class PickColorCommand extends AbstractCommand
 {
@@ -32,7 +30,7 @@ class PickColorCommand extends AbstractCommand
             ->type('string')
             ->value('array');
 
-        try {
+        return $this->handleCommand(function () use ($image, $x, $y, $format) {
             $core = $image->getCore();
 
             $pixel = $core->getpoint($x, $y);
@@ -42,10 +40,6 @@ class PickColorCommand extends AbstractCommand
             $color = $color->format($format);
 
             $this->setOutput($color);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }

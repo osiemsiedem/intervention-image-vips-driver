@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Exception;
-use Intervention\Image\Commands\AbstractCommand;
-
 class GammaCommand extends AbstractCommand
 {
     /**
@@ -22,16 +19,12 @@ class GammaCommand extends AbstractCommand
             ->required()
             ->value();
 
-        try {
+        return $this->handleCommand(function () use ($image, $gamma) {
             $core = $image->getCore();
 
             $core = $core->gamma(['exponent' => $gamma]);
 
             $image->setCore($core);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
+        });
     }
 }
