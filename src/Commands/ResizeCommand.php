@@ -27,7 +27,7 @@ class ResizeCommand extends AbstractCommand
 
             $size = $image->getSize()->resize($width, $height, $constraints);
 
-            $core = $core->resize($size->getWidth() / $core->width, ['vscale' => $size->getHeight() / $core->height]);
+            $core = $this->resizeImage($core, $size->getWidth(), $size->getHeight());
 
             $image->setCore($core);
         });

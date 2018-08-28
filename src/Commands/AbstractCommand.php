@@ -6,6 +6,7 @@ namespace Intervention\Image\Vips\Commands;
 
 use Closure;
 use Jcupitt\Vips\Image;
+use Jcupitt\Vips\Kernel;
 use Jcupitt\Vips\Exception;
 use Intervention\Image\Commands\AbstractCommand as BaseAbstractCommand;
 
@@ -15,7 +16,7 @@ abstract class AbstractCommand extends BaseAbstractCommand
      * Flatten the image.
      *
      * @param  \Jcupitt\Vips\Image  $image
-     * @return bool
+     * @return \Jcupitt\Vips\Image
      * @link   https://github.com/jcupitt/libvips/issues/59#issuecomment-222351004
      */
     protected function flattenImage(Image $image): Image
@@ -24,10 +25,33 @@ abstract class AbstractCommand extends BaseAbstractCommand
     }
 
     /**
+     * Resize the image.
+     *
+     * @param  \Jcupitt\Vips\Image  $image
+     * @param  int  $width
+     * @param  int  $height
+     * @return \Jcupitt\Vips\Image
+     */
+    protected function resizeImage(Image $image, int $width, int $height): Image
+    {
+        $options = [
+            'height' => $height,
+            'size'   => 'force',
+        ];
+
+        if ($image->typeof('icc-profile-data') !== 0) {
+            $options['import_profile'] = __DIR__.'/../../icc/sRGB2014.icc';
+            $options['export_profile'] = __DIR__.'/../../icc/sRGB2014.icc';
+        }
+
+        return $image->thumbnail_image($width, $options);
+    }
+
+    /**
      * Extract the alpha channel.
      *
      * @param  \Jcupitt\Vips\Image  $image
-     * @return bool
+     * @return \Jcupitt\Vips\Image
      * @link   https://github.com/jcupitt/libvips/issues/59#issuecomment-222351004
      */
     protected function extractAlphaChannel(Image $image): Image

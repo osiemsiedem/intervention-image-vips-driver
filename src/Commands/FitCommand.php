@@ -45,7 +45,7 @@ class FitCommand extends AbstractCommand
 
             $core = $core->crop($sizeBefore->pivot->x, $sizeBefore->pivot->y, $sizeBefore->width, $sizeBefore->height);
 
-            $core = $core->resize($sizeAfter->getWidth() / $core->width, ['vscale' => $sizeAfter->getHeight() / $core->height]);
+            $core = $this->resizeImage($core, $sizeAfter->getWidth(), $sizeAfter->getHeight());
 
             $image->setCore($core);
         });
