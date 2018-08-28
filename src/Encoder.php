@@ -36,7 +36,7 @@ class Encoder extends AbstractEncoder
         return $this->image
             ->getCore()
             ->writeToBuffer('.png', [
-                'compression' => 9,
+                'compression' => (int) round(9 - ($this->quality * 9 / 100) + 0.5),
                 'strip'       => true,
             ]);
     }
