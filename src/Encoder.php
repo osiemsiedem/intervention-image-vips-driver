@@ -19,8 +19,10 @@ class Encoder extends AbstractEncoder
         return $this->image
             ->getCore()
             ->writeToBuffer('.jpg', [
-                'interlace' => false,
-                'Q'         => $this->quality,
+                'optimize_coding' => true,
+                'strip'           => true,
+                'interlace'       => false,
+                'Q'               => $this->quality,
             ]);
     }
 
@@ -33,7 +35,10 @@ class Encoder extends AbstractEncoder
     {
         return $this->image
             ->getCore()
-            ->writeToBuffer('.png', ['compression' => 6]);
+            ->writeToBuffer('.png', [
+                'compression' => 9,
+                'strip'       => true,
+            ]);
     }
 
     /**
@@ -46,8 +51,10 @@ class Encoder extends AbstractEncoder
         return $this->image
             ->getCore()
             ->writeToBuffer('.webp', [
+                'strip'     => true,
                 'interlace' => false,
                 'lossless'  => false,
+                'Q'         => $this->quality,
             ]);
     }
 
