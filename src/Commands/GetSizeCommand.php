@@ -19,6 +19,8 @@ class GetSizeCommand extends AbstractCommand
         return $this->handleCommand(function () use ($image) {
             $core = $image->getCore();
 
+            $core = $core->autorot();
+
             $size = new Size($core->width, $core->height);
 
             $this->setOutput($size);
