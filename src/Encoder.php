@@ -52,7 +52,6 @@ class Encoder extends AbstractEncoder
             ->getCore()
             ->writeToBuffer('.webp', [
                 'strip'     => true,
-                'interlace' => false,
                 'lossless'  => false,
                 'Q'         => $this->quality,
             ]);
