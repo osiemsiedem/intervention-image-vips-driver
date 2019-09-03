@@ -20,7 +20,13 @@ class Decoder extends AbstractDecoder
      */
     public function initFromPath($path): InterventionImage
     {
-        return $this->initFromVips(VipsImage::newFromFile($path));
+        $options = [];
+
+        if ($accessMode = \getenv('VIPS_ACCESS_MODE')) {
+            $options['access'] = $accessMode;
+        }
+
+        return $this->initFromVips(VipsImage::newFromFile($path, $options));
     }
 
     /**
