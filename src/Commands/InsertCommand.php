@@ -44,7 +44,7 @@ class InsertCommand extends AbstractCommand
 
             $target = $imageSize->relativePosition($watermarkSize);
 
-            if ($watermarkCore->hasalpha()) {
+            if ($watermarkCore->hasAlpha()) {
                 $watermarkCore = $watermarkCore->embed($target->x, $target->y, $imageSize->width, $imageSize->height, [
                     'extend'     => Extend::BACKGROUND,
                     'background' => [0, 0, 0, 0],
