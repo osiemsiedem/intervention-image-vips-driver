@@ -6,6 +6,7 @@ namespace Intervention\Image\Vips\Commands;
 
 use Jcupitt\Vips\Image;
 use Jcupitt\Vips\Extend;
+use Jcupitt\Vips\BlendMode;
 
 class InsertCommand extends AbstractCommand
 {
@@ -44,13 +45,13 @@ class InsertCommand extends AbstractCommand
 
             $target = $imageSize->relativePosition($watermarkSize);
 
-            if ($watermarkCore->hasalpha()) {
+            if ($watermarkCore->hasAlpha()) {
                 $watermarkCore = $watermarkCore->embed($target->x, $target->y, $imageSize->width, $imageSize->height, [
                     'extend'     => Extend::BACKGROUND,
                     'background' => [0, 0, 0, 0],
                 ]);
 
-                $imageCore = $imageCore->composite([$imageCore, $watermarkCore], 2);
+                $imageCore = $imageCore->composite([$imageCore, $watermarkCore], BlendMode::OVER);
             } else {
                 $imageCore = $imageCore->insert($watermarkCore->bandjoin(255), $target->x, $target->y);
             }
