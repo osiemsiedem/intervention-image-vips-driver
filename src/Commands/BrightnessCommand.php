@@ -22,7 +22,7 @@ class BrightnessCommand extends AbstractCommand
         return $this->handleCommand(function () use ($image, $level) {
             $core = $image->getCore();
 
-            if ($core->hasalpha()) {
+            if ($core->hasAlpha()) {
                 $flatten = $this->flattenImage($core);
 
                 $mask = $this->extractAlphaChannel($core);

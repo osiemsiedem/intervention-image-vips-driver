@@ -49,7 +49,7 @@ class RotateCommand extends AbstractCommand
                     if ($color->alpha > 0 && $color->alpha < 255) {
                         $background = [$color->red, $color->green, $color->blue, $color->alpha];
 
-                        if ( ! $core->hasalpha()) {
+                        if ( ! $core->hasAlpha()) {
                             $core = $core->bandjoin(255);
                         }
                     } else {
