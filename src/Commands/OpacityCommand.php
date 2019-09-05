@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\BlendMode;
+
 class OpacityCommand extends AbstractCommand
 {
     /**
@@ -25,7 +27,7 @@ class OpacityCommand extends AbstractCommand
             if ( ! $core->hasAlpha()) {
                 $background = $image->getDriver()->newImage($core->width, $core->height, [0, 0, 0, 0])->getCore();
 
-                $core = $background->composite([$background, $core], 2);
+                $core = $background->composite([$background, $core], BlendMode::OVER);
             }
 
             $core = $core->multiply([1.0, 1.0, 1.0, $transparency]);
