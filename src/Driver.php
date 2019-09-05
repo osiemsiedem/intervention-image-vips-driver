@@ -24,7 +24,7 @@ class Driver extends AbstractDriver
      */
     public function __construct(Decoder $decoder = null, Encoder $encoder = null)
     {
-        if ( ! $this->coreAvailable()) {
+        if (! $this->coreAvailable()) {
             throw new NotSupportedException('VIPS module is not available.');
         }
 
@@ -55,7 +55,7 @@ class Driver extends AbstractDriver
                 $background->alpha,
             ]);
 
-        return new InterventionImage(new Driver, $object);
+        return new InterventionImage(new self, $object);
     }
 
     /**

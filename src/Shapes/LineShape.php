@@ -11,7 +11,7 @@ use Intervention\Image\Exception\NotSupportedException;
 class LineShape extends AbstractShape
 {
     /**
-     * @var integer
+     * @var int
      */
     public $x = 0;
 

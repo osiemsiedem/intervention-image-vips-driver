@@ -24,7 +24,7 @@ class OpacityCommand extends AbstractCommand
         return $this->handleCommand(function () use ($image, $transparency) {
             $core = $image->getCore();
 
-            if ( ! $core->hasAlpha()) {
+            if (! $core->hasAlpha()) {
                 $background = $image->getDriver()->newImage($core->width, $core->height, [0, 0, 0, 0])->getCore();
 
                 $core = $background->composite([$background, $core], BlendMode::OVER);
