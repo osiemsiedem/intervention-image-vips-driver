@@ -50,7 +50,7 @@ class InsertCommand extends AbstractCommand
                     'background' => [0, 0, 0, 0],
                 ]);
 
-                $imageCore = $imageCore->composite([$imageCore, $watermarkCore], 2);
+                $imageCore = $imageCore->composite([$imageCore, $watermarkCore], [BlendMode::OVER]);
             } else {
                 $imageCore = $imageCore->insert($watermarkCore->bandjoin(255), $target->x, $target->y);
             }
