@@ -54,11 +54,11 @@ class Color extends AbstractColor
         $array = array_values($value);
 
         if (count($array) === 4) {
-            list($red, $green, $blue, $alpha) = $array;
+            [$red, $green, $blue, $alpha] = $array;
 
             $alpha = $this->alpha2vips($alpha);
         } elseif (count($array) === 3) {
-            list($red, $green, $blue) = $array;
+            [$red, $green, $blue] = $array;
 
             $alpha = $this->alpha2vips(1);
         }
