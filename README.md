@@ -1,6 +1,8 @@
 # VIPS driver for Intervention Image
 
-Work in progress.
+[![Latest Stable Version](https://poser.pugx.org/osiemsiedem/intervention-image-vips-driver/v/stable)](https://packagist.org/packages/osiemsiedem/intervention-image-vips-driver) [![License](https://poser.pugx.org/osiemsiedem/intervention-image-vips-driver/license)](https://packagist.org/packages/osiemsiedem/intervention-image-vips-driver)
+
+This is a work in progress.
 
 ## Requirements
 
@@ -13,7 +15,17 @@ Work in progress.
 composer require osiemsiedem/intervention-image-vips-driver
 ```
 
-## TODO
+## Configuration
+
+Set `vips` as driver name:
+
+```php
+use Intervention\Image\ImageManager;
+
+$manager = new ImageManager(['driver' => 'vips']);
+```
+
+## To-Do
 
 ### Commands
 
