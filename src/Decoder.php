@@ -26,7 +26,10 @@ class Decoder extends AbstractDecoder
             $options['access'] = $accessMode;
         }
 
-        return $this->initFromVips(VipsImage::newFromFile($path, $options));
+        $image = $this->initFromVips(VipsImage::newFromFile($path, $options));
+        $image->setFileInfoFromPath($path);
+
+        return $image;
     }
 
     /**
