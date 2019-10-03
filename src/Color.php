@@ -70,9 +70,9 @@ class Color extends AbstractColor
             $alpha = $this->alpha2vips($array[2]);
         }
 
-        $this->red = (int) $red;
-        $this->green = (int) $green;
-        $this->blue = (int) $blue;
+        $this->red = $this->clampValue($red);
+        $this->green = $this->clampValue($green);
+        $this->blue = $this->clampValue($blue);
         $this->alpha = $alpha;
     }
 
@@ -220,5 +220,15 @@ class Color extends AbstractColor
         }
 
         return (int) ceil($input * 255);
+    }
+
+    /**
+     * @param $value
+     *
+     * @return int
+     */
+    protected function clampValue($value): int
+    {
+        return (int) min(255, $value);
     }
 }
