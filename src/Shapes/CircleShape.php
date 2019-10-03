@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Shapes;
 
 use Intervention\Image\Image;
+use Intervention\Image\Exception\NotSupportedException;
 
 class CircleShape extends EllipseShape
 {
