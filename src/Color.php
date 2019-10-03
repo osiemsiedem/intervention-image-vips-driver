@@ -54,18 +54,25 @@ class Color extends AbstractColor
         $array = array_values($value);
 
         if (count($array) === 4) {
+            // RGBa
             [$red, $green, $blue, $alpha] = $array;
 
             $alpha = $this->alpha2vips($alpha);
         } elseif (count($array) === 3) {
+            // RGB
             [$red, $green, $blue] = $array;
 
             $alpha = $this->alpha2vips(1);
+        } elseif (count($array) === 2) {
+            // Grayscale
+            $red = $green = $blue = $array[0];
+
+            $alpha = $this->alpha2vips($array[2]);
         }
 
-        $this->red = (int) $red;
-        $this->green = (int) $green;
-        $this->blue = (int) $blue;
+        $this->red = $this->clampValue($red);
+        $this->green = $this->clampValue($green);
+        $this->blue = $this->clampValue($blue);
         $this->alpha = $alpha;
     }
 
@@ -213,5 +220,15 @@ class Color extends AbstractColor
         }
 
         return (int) ceil($input * 255);
+    }
+
+    /**
+     * @param $value
+     *
+     * @return int
+     */
+    protected function clampValue($value): int
+    {
+        return (int) min(255, $value);
     }
 }

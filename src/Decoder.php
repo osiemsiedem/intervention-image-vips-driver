@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips;
 
 use Imagick;
+use Jcupitt\Vips\Image;
 use Jcupitt\Vips\Image as VipsImage;
 use Intervention\Image\AbstractDecoder;
 use Intervention\Image\Image as InterventionImage;
@@ -40,7 +41,10 @@ class Decoder extends AbstractDecoder
      */
     public function initFromBinary($data): InterventionImage
     {
-        return $this->initFromVips(VipsImage::newFromBuffer($data));
+        $image = $this->initFromVips(VipsImage::newFromBuffer($data));
+        $image->mime = finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $data);
+
+        return $image;
     }
 
     /**
