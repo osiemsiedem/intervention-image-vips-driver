@@ -54,13 +54,20 @@ class Color extends AbstractColor
         $array = array_values($value);
 
         if (count($array) === 4) {
+            // RGBa
             [$red, $green, $blue, $alpha] = $array;
 
             $alpha = $this->alpha2vips($alpha);
         } elseif (count($array) === 3) {
+            // RGB
             [$red, $green, $blue] = $array;
 
             $alpha = $this->alpha2vips(1);
+        } elseif (count($array) === 2) {
+            // Grayscale
+            $red = $green = $blue = $array[0];
+
+            $alpha = $this->alpha2vips($array[2]);
         }
 
         $this->red = (int) $red;
