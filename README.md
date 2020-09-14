@@ -62,11 +62,11 @@ $manager = new ImageManager(['driver' => 'vips']);
 
 ### Shapes
 
-- [ ] CircleShape
-- [ ] EllipseShape
-- [ ] LineShape
-- [ ] PolygonShape
-- [ ] RectangleShape
+- [x] CircleShape
+- [x] EllipseShape
+- [x] LineShape
+- [x] PolygonShape
+- [x] RectangleShape
 
 ## Credits
 

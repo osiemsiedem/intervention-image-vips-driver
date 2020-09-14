@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Shapes;
 
 use Intervention\Image\Image;
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Exception\NotSupportedException;
 
 class EllipseShape extends AbstractShape
 {
@@ -36,14 +34,22 @@ class EllipseShape extends AbstractShape
     /**
      * Draw the shape.
      *
-     * @param  \Intervention\Image\Image  $image
-     * @param  int  $x
-     * @param  int  $y
+     * @param \Intervention\Image\Image $image
+     * @param int                       $x
+     * @param int                       $y
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
-        throw new NotSupportedException('Ellipse shape is not supported by VIPS driver.');
+        $this->applyToImageViaSVG(
+            $image,
+            'ellipse',
+            [
+                'cx' => $x,
+                'cy' => $y,
+                'rx' => $this->width / 2,
+                'ry' => $this->height / 2,
+            ] + $this->getSVGAttributes()
+        );
     }
 }
