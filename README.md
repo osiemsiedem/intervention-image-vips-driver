@@ -45,6 +45,7 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] InsertCommand
 - [x] InterlaceCommand
 - [x] InvertCommand
+- [x] MaskCommand
 - [x] OpacityCommand
 - [x] PickColorCommand
 - [x] PixelCommand
@@ -58,7 +59,6 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] WidenCommand
 - [ ] FillCommand
 - [ ] LimitColorsCommand
-- [ ] MaskCommand
 
 ### Shapes
 
