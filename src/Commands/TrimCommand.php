@@ -77,7 +77,7 @@ class TrimCommand extends AbstractCommand
 
                 if($checkTransparency) {
                     $point = [0, 0, 0];
-                    $trim_core = $core[$core->bands-1];
+                    $trim_core = $this->extractAlphaChannel($core);
                 } else {
                     $point = $core->getpoint($base_x, $base_y);
                     unset($point[3]);
