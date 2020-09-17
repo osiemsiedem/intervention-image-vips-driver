@@ -9,6 +9,8 @@ use Intervention\Image\Exception\NotSupportedException;
 
 class Encoder extends AbstractEncoder
 {
+    public $interlace = false;
+
     /**
      * Get the encoded image as JPEG string.
      *
@@ -21,7 +23,7 @@ class Encoder extends AbstractEncoder
             ->writeToBuffer('.jpg', [
                 'optimize_coding' => true,
                 'strip'           => true,
-                'interlace'       => false,
+                'interlace'       => $this->interlace,
                 'Q'               => $this->quality,
             ]);
     }
@@ -37,6 +39,7 @@ class Encoder extends AbstractEncoder
             ->getCore()
             ->writeToBuffer('.png', [
                 'compression' => (int) round(9 - ($this->quality * 9 / 100) + 0.5),
+                'interlace'   => $this->interlace,
                 'strip'       => true,
             ]);
     }
@@ -111,4 +114,13 @@ class Encoder extends AbstractEncoder
     {
         throw new NotSupportedException('PSD format is not supported by VIPS driver.');
     }
+
+//    public function process(Image $image, $format = null, $quality = null)
+//    {
+//        $parent = parent::process($image, $format, $quality);
+//
+//        $this->interlace = false;
+//
+//        return $parent;
+//    }
 }
