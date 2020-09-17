@@ -36,6 +36,7 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] ContrastCommand
 - [x] CropCommand
 - [x] DestroyCommand
+- [x] FillCommand
 - [x] FitCommand
 - [x] FlipCommand
 - [x] GammaCommand
@@ -57,7 +58,6 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] SharpenCommand
 - [x] TrimCommand
 - [x] WidenCommand
-- [ ] FillCommand
 - [ ] LimitColorsCommand
 
 ### Shapes
