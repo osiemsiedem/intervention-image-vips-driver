@@ -48,6 +48,7 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] OpacityCommand
 - [x] PickColorCommand
 - [x] PixelCommand
+- [x] PixelateCommand
 - [x] ResetCommand
 - [x] ResizeCommand
 - [x] ResizeCanvasCommand
@@ -58,7 +59,6 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [ ] FillCommand
 - [ ] LimitColorsCommand
 - [ ] MaskCommand
-- [ ] PixelateCommand
 
 ### Shapes
 
