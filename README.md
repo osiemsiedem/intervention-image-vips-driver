@@ -49,6 +49,7 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] ResizeCommand
 - [x] RotateCommand
 - [x] SharpenCommand
+- [x] TrimCommand
 - [x] WidenCommand
 - [ ] ColorizeCommand
 - [ ] ContrastCommand
@@ -58,7 +59,6 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [ ] MaskCommand
 - [ ] PixelateCommand
 - [ ] ResizeCanvasCommand
-- [ ] TrimCommand
 
 ### Shapes
 
