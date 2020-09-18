@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-
 use Intervention\Image\Vips\Color;
 use Jcupitt\Vips\Extend;
 use Jcupitt\Vips\Image;
@@ -43,7 +42,7 @@ class ResizeCanvasCommand extends AbstractCommand
         $height = ($height <= 0) ? $height + $original_height : $height;
 
         return $this->handleCommand(
-            function () use($image, $width, $height, $anchor, $bgcolor) {
+            function () use ($image, $width, $height, $anchor, $bgcolor) {
 
                 /** @var Image $core */
                 $core = $image->getCore();
@@ -57,12 +56,12 @@ class ResizeCanvasCommand extends AbstractCommand
                     'right' => 'east',
                     'bottom-left' => 'south-west',
                     'bottom' => 'south',
-                    'bottom-right' => 'south-east'
+                    'bottom-right' => 'south-east',
                 ];
 
                 $color = new Color($bgcolor);
 
-                if(!$core->hasAlpha()) {
+                if (! $core->hasAlpha()) {
                     $core = $core->bandjoin_const(255);
                 }
                 $core = $core->gravity(

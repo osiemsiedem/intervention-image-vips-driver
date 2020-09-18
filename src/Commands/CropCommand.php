@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Image;
 use Intervention\Image\Exception\InvalidArgumentException;
+use Jcupitt\Vips\Image;
 use Jcupitt\Vips\Interesting;
 
 class CropCommand extends AbstractCommand

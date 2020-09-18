@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Intervention\Image\Vips;
@@ -16,9 +17,8 @@ use Jcupitt\Vips\Interpretation;
 
 class Font extends AbstractFont
 {
-
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      * @throws Exception
      */
     public function applyToImage(Image $image, $posx = 0, $posy = 0)
@@ -33,10 +33,10 @@ class Font extends AbstractFont
 
         $core = $core->multiply(
             [
-                $color->red/255,
-                $color->green/255,
-                $color->blue/255,
-                $color->alpha/255,
+                $color->red / 255,
+                $color->green / 255,
+                $color->blue / 255,
+                $color->alpha / 255,
             ]
         );
 
@@ -70,7 +70,7 @@ class Font extends AbstractFont
         /** @var ImageCore $imageCore */
         $imageCore = $image->getCore();
 
-        if(!$imageCore->hasAlpha()) {
+        if (! $imageCore->hasAlpha()) {
             $imageCore = $imageCore->bandjoin_const(255);
         }
 
@@ -91,14 +91,14 @@ class Font extends AbstractFont
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      * @throws Exception
      */
     public function getBoxSize()
     {
         $box = [];
 
-        if($this->text === '') {
+        if ($this->text === '') {
             // no text -> no boxsize
             $box['width'] = 0;
             $box['height'] = 0;
@@ -115,13 +115,14 @@ class Font extends AbstractFont
      * @return ImageCore
      * @throws Exception
      */
-    private function createTextImage() {
+    private function createTextImage()
+    {
         if ($this->hasApplicableFontFile()) {
             $info = pathinfo($this->file);
             $font = basename($this->file, '.'.$info['extension']);
         } else {
             throw new RuntimeException(
-                "Font file must be provided to apply text to image."
+                'Font file must be provided to apply text to image.'
             );
         }
         $align_to_vips = [
@@ -138,7 +139,7 @@ class Font extends AbstractFont
             ]
         );
 
-        switch($this->angle % 360) {
+        switch ($this->angle % 360) {
             case 0:
                 break;
 

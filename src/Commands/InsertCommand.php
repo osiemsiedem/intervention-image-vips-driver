@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Image;
-use Jcupitt\Vips\Extend;
 use Jcupitt\Vips\BlendMode;
+use Jcupitt\Vips\Extend;
+use Jcupitt\Vips\Image;
 
 class InsertCommand extends AbstractCommand
 {

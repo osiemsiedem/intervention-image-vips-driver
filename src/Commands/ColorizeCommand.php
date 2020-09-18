@@ -30,7 +30,7 @@ class ColorizeCommand extends AbstractCommand
                      ->value();
 
         return $this->handleCommand(
-            function () use($image, $red, $green, $blue) {
+            function () use ($image, $red, $green, $blue) {
                 /** @var Image $core */
                 $core = $image->getCore();
 
@@ -41,7 +41,7 @@ class ColorizeCommand extends AbstractCommand
                 [$a[1], $b[1]] = $this->normalizeLevel($green);
                 [$a[2], $b[2]] = $this->normalizeLevel($blue);
 
-                if($core->hasAlpha()) {
+                if ($core->hasAlpha()) {
                     $flatten = $this->flattenImage($core);
 
                     $mask = $this->extractAlphaChannel($core);
@@ -57,10 +57,12 @@ class ColorizeCommand extends AbstractCommand
         );
     }
 
-    private function normalizeLevel($level) {
-        if($level > 0) {
+    private function normalizeLevel($level)
+    {
+        if ($level > 0) {
             return [1 - $level / 100, $level * 2.55];
         }
+
         return [1 + $level / 100, 0];
     }
 }
