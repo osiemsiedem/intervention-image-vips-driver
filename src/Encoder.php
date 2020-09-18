@@ -6,9 +6,12 @@ namespace Intervention\Image\Vips;
 
 use Intervention\Image\AbstractEncoder;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Image;
 
 class Encoder extends AbstractEncoder
 {
+    public $interlace = false;
+
     /**
      * Get the encoded image as JPEG string.
      *
@@ -21,7 +24,7 @@ class Encoder extends AbstractEncoder
             ->writeToBuffer('.jpg', [
                 'optimize_coding' => true,
                 'strip'           => true,
-                'interlace'       => false,
+                'interlace'       => $this->interlace,
                 'Q'               => $this->quality,
             ]);
     }
@@ -37,6 +40,7 @@ class Encoder extends AbstractEncoder
             ->getCore()
             ->writeToBuffer('.png', [
                 'compression' => (int) round(9 - ($this->quality * 9 / 100) + 0.5),
+                'interlace'   => $this->interlace,
                 'strip'       => true,
             ]);
     }
@@ -72,11 +76,15 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as TIFF string.
      *
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processTiff()
     {
-        throw new NotSupportedException('TIFF format is not supported by VIPS driver.');
+        return $this->image
+            ->getCore()
+            ->writeToBuffer('.tiff', [
+                'lossless'  => false,
+                'Q'         => $this->quality,
+            ]);
     }
 
     /**
@@ -110,5 +118,14 @@ class Encoder extends AbstractEncoder
     protected function processPsd()
     {
         throw new NotSupportedException('PSD format is not supported by VIPS driver.');
+    }
+
+    public function process(Image $image, $format = null, $quality = null)
+    {
+        $parent = parent::process($image, $format, $quality);
+
+        $this->interlace = false;
+
+        return $parent;
     }
 }

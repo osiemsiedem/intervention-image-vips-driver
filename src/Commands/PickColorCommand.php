@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Intervention\Image\Vips\Color;
+use Jcupitt\Vips\Image;
 
 class PickColorCommand extends AbstractCommand
 {
@@ -31,6 +32,7 @@ class PickColorCommand extends AbstractCommand
             ->value('array');
 
         return $this->handleCommand(function () use ($image, $x, $y, $format) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             $pixel = $core->getpoint($x, $y);

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
 use Jcupitt\Vips\Interpretation;
 
 class GreyscaleCommand extends AbstractCommand
@@ -17,6 +18,7 @@ class GreyscaleCommand extends AbstractCommand
     public function execute($image): bool
     {
         return $this->handleCommand(function () use ($image) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             $core = $core->colourspace(Interpretation::B_W);

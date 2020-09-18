@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
+
 class BrightnessCommand extends AbstractCommand
 {
     /**
@@ -20,6 +22,7 @@ class BrightnessCommand extends AbstractCommand
             ->value() * 2.55;
 
         return $this->handleCommand(function () use ($image, $level) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             if ($core->hasAlpha()) {

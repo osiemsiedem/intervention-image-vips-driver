@@ -32,8 +32,11 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] BackupCommand
 - [x] BlurCommand
 - [x] BrightnessCommand
+- [x] ColorizeCommand
+- [x] ContrastCommand
 - [x] CropCommand
 - [x] DestroyCommand
+- [x] FillCommand
 - [x] FitCommand
 - [x] FlipCommand
 - [x] GammaCommand
@@ -41,24 +44,21 @@ $manager = new ImageManager(['driver' => 'vips']);
 - [x] GreyscaleCommand
 - [x] HeightenCommand
 - [x] InsertCommand
+- [x] InterlaceCommand
 - [x] InvertCommand
+- [x] MaskCommand
 - [x] OpacityCommand
 - [x] PickColorCommand
 - [x] PixelCommand
+- [x] PixelateCommand
 - [x] ResetCommand
 - [x] ResizeCommand
+- [x] ResizeCanvasCommand
 - [x] RotateCommand
 - [x] SharpenCommand
+- [x] TrimCommand
 - [x] WidenCommand
-- [ ] ColorizeCommand
-- [ ] ContrastCommand
-- [ ] FillCommand
-- [ ] InterlaceCommand
 - [ ] LimitColorsCommand
-- [ ] MaskCommand
-- [ ] PixelateCommand
-- [ ] ResizeCanvasCommand
-- [ ] TrimCommand
 
 ### Shapes
 

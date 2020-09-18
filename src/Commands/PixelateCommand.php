@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Intervention\Image\Exception\NotSupportedException;
+
+use Jcupitt\Vips\Image;
 
 class PixelateCommand extends AbstractCommand
 {
@@ -12,11 +13,21 @@ class PixelateCommand extends AbstractCommand
      * Execute the command.
      *
      * @param  \Intervention\Image\Image  $image
-     * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @return bool
      */
     public function execute($image)
     {
-        throw new NotSupportedException('Pixelate command is not supported by VIPS driver.');
+        $size = $this->argument(0)->type('digit')->value(10);
+
+        return $this->handleCommand(
+            function () use($image, $size) {
+                /** @var Image $core */
+                $core = $image->getCore();
+
+                $core = $core->resize(1/$size)->resize($size);
+
+                $image->setCore($core);
+            }
+        );
     }
 }

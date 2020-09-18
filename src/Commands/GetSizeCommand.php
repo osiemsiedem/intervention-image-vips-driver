@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Intervention\Image\Size;
+use Jcupitt\Vips\Image;
 
 class GetSizeCommand extends AbstractCommand
 {
@@ -17,6 +18,7 @@ class GetSizeCommand extends AbstractCommand
     public function execute($image): bool
     {
         return $this->handleCommand(function () use ($image) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             $core = $core->autorot();

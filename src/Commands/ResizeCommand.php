@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
+
 class ResizeCommand extends AbstractCommand
 {
     /**
@@ -23,6 +25,7 @@ class ResizeCommand extends AbstractCommand
             ->value();
 
         return $this->handleCommand(function () use ($image, $width, $height, $constraints) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             $size = $image->getSize()->resize($width, $height, $constraints);

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Vips\Encoder;
 
 class InterlaceCommand extends AbstractCommand
 {
@@ -13,10 +13,15 @@ class InterlaceCommand extends AbstractCommand
      *
      * @param  \Intervention\Image\Image  $image
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function execute($image)
     {
-        throw new NotSupportedException('Interlace command is not supported by VIPS driver.');
+        $mode = $this->argument(0)
+                     ->type('bool')
+                     ->value(true);
+
+        /** @var Encoder $encoder */
+        $encoder = $image->getDriver()->encoder;
+        $encoder->interlace = $mode;
     }
 }
