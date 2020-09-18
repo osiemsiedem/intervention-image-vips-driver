@@ -36,12 +36,12 @@ class LimitColorsCommand extends AbstractCommand
                 $core = $image->getCore();
 
                 $alpha = null;
-                if($core->hasAlpha()) {
+                if ($core->hasAlpha()) {
                     $alpha = $this->extractAlphaChannel($core);
                     $core = $this->flattenImage($core);
                 }
 
-                if($matte) {
+                if ($matte) {
                     $matteColor = new Color($matte);
 
                     $canvas = $image->getDriver()->newImage(
@@ -59,7 +59,7 @@ class LimitColorsCommand extends AbstractCommand
                         ]
                     );
                     $core = Image::pngload_buffer($buffer);
-                    if($alpha) {
+                    if ($alpha) {
                         $core = $core->bandjoin($alpha);
                     }
 
