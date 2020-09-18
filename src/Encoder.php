@@ -75,11 +75,15 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as TIFF string.
      *
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processTiff()
     {
-        throw new NotSupportedException('TIFF format is not supported by VIPS driver.');
+        return $this->image
+            ->getCore()
+            ->writeToBuffer('.tiff', [
+                'lossless'  => false,
+                'Q'         => $this->quality,
+            ]);
     }
 
     /**
