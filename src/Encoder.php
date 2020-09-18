@@ -6,6 +6,7 @@ namespace Intervention\Image\Vips;
 
 use Intervention\Image\AbstractEncoder;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Image;
 
 class Encoder extends AbstractEncoder
 {
@@ -119,12 +120,12 @@ class Encoder extends AbstractEncoder
         throw new NotSupportedException('PSD format is not supported by VIPS driver.');
     }
 
-//    public function process(Image $image, $format = null, $quality = null)
-//    {
-//        $parent = parent::process($image, $format, $quality);
-//
-//        $this->interlace = false;
-//
-//        return $parent;
-//    }
+    public function process(Image $image, $format = null, $quality = null)
+    {
+        $parent = parent::process($image, $format, $quality);
+
+        $this->interlace = false;
+
+        return $parent;
+    }
 }
