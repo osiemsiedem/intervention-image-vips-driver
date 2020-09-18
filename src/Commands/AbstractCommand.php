@@ -61,7 +61,7 @@ abstract class AbstractCommand extends BaseAbstractCommand
     /**
      * Handle the command.
      *
-     * @param  \Closure  $command
+     * @param  Closure  $command
      * @return bool
      */
     protected function handleCommand(Closure $command): bool
@@ -69,7 +69,6 @@ abstract class AbstractCommand extends BaseAbstractCommand
         try {
             $command();
         } catch (Exception $e) {
-            echo $e->getMessage();
             return false;
         }
 
