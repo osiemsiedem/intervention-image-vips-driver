@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 
+use Jcupitt\Vips\Image;
+
 class ContrastCommand extends AbstractCommand
 {
     /**
@@ -19,6 +21,7 @@ class ContrastCommand extends AbstractCommand
 
         return $this->handleCommand(
             function () use($image, $level) {
+                /** @var Image $core */
                 $core = $image->getCore();
 
                 // calculate a and b for linear

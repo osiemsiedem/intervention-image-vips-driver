@@ -33,6 +33,7 @@ class MaskCommand extends AbstractCommand
                     $mask->resize($image->width(), $image->height());
                 }
                 $mask = $mask->getCore();
+                /** @var Image $mask */
 
                 if($mask_w_alpha) {
                     $mask = $this->extractAlphaChannel($mask);

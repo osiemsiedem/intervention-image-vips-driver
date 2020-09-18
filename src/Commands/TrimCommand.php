@@ -94,20 +94,20 @@ class TrimCommand extends AbstractCommand
                 $crop_width = $trim['width'];
                 $crop_height = $trim['height'];
 
-                if(!in_array('right', $away)) {
+                if(!in_array('right', $away, true)) {
                     $crop_width = $crop_width + ($image->width() - $crop_width - $crop_x);
                 }
 
-                if(!in_array('bottom', $away)) {
+                if(!in_array('bottom', $away, true)) {
                     $crop_height = $crop_height + ($image->height() - $crop_height - $crop_y);
                 }
 
-                if(!in_array('left', $away)) {
+                if(!in_array('left', $away, true)) {
                     $crop_width += $crop_x;
                     $crop_x = 0;
                 }
 
-                if(!in_array('top', $away)) {
+                if(!in_array('top', $away, true)) {
                     $crop_height += $crop_y;
                     $crop_y = 0;
                 }

@@ -69,6 +69,7 @@ abstract class AbstractCommand extends BaseAbstractCommand
         try {
             $command();
         } catch (Exception $e) {
+            echo $e->getMessage();
             return false;
         }
 

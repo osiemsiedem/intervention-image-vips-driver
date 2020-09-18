@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
+
 class ColorizeCommand extends AbstractCommand
 {
     /**
@@ -29,6 +31,7 @@ class ColorizeCommand extends AbstractCommand
 
         return $this->handleCommand(
             function () use($image, $red, $green, $blue) {
+                /** @var Image $core */
                 $core = $image->getCore();
 
                 // calculate a and b for colors linear transformation

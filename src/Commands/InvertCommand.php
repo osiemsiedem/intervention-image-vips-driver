@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
+
 class InvertCommand extends AbstractCommand
 {
     /**
@@ -15,6 +17,7 @@ class InvertCommand extends AbstractCommand
     public function execute($image): bool
     {
         return $this->handleCommand(function () use ($image) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             if ($core->hasAlpha()) {

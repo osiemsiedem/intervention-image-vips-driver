@@ -27,7 +27,7 @@ class HeightenCommand extends ResizeCommand
 
         $this->arguments[1] = $height;
 
-        $this->arguments[2] = function ($constraint) use ($constraints) {
+        $this->arguments[2] = static function ($constraint) use ($constraints) {
             $constraint->aspectRatio();
 
             if (is_callable($constraints)) {
