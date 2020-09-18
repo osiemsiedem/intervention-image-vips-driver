@@ -98,7 +98,7 @@ class Font extends AbstractFont
     {
         $box = [];
 
-        if(strlen($this->text) == 0) {
+        if($this->text === '') {
             // no text -> no boxsize
             $box['width'] = 0;
             $box['height'] = 0;
