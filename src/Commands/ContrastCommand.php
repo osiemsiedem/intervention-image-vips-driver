@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-
 use Jcupitt\Vips\Image;
 
 class ContrastCommand extends AbstractCommand
@@ -20,7 +19,7 @@ class ContrastCommand extends AbstractCommand
         $level = $this->argument(0)->between(-100, 100)->required()->value();
 
         return $this->handleCommand(
-            function () use($image, $level) {
+            function () use ($image, $level) {
                 /** @var Image $core */
                 $core = $image->getCore();
 
@@ -28,7 +27,7 @@ class ContrastCommand extends AbstractCommand
                 $a = 1 + $level / 100;
                 $b = 255 * (1 - $a);
 
-                if($core->hasAlpha()) {
+                if ($core->hasAlpha()) {
                     $flatten = $this->flattenImage($core);
 
                     $mask = $this->extractAlphaChannel($core);

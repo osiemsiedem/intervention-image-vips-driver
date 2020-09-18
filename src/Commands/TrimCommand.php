@@ -69,13 +69,13 @@ class TrimCommand extends AbstractCommand
         }
 
         return $this->handleCommand(
-            function () use($image, $base_x, $base_y, $checkTransparency, $away, $tolerance, $feather) {
+            function () use ($image, $base_x, $base_y, $checkTransparency, $away, $tolerance, $feather) {
                 /** @var Image $core */
                 $core = $image->getCore();
 
                 $trim_core = $core;
 
-                if($checkTransparency) {
+                if ($checkTransparency) {
                     $point = [0, 0, 0];
                     $trim_core = $this->extractAlphaChannel($core);
                 } else {
@@ -85,7 +85,7 @@ class TrimCommand extends AbstractCommand
                 $trim = $trim_core->find_trim(
                     [
                         'background' => $point,
-                        'threshold' => $tolerance
+                        'threshold' => $tolerance,
                     ]
                 );
 
@@ -94,20 +94,20 @@ class TrimCommand extends AbstractCommand
                 $crop_width = $trim['width'];
                 $crop_height = $trim['height'];
 
-                if(!in_array('right', $away, true)) {
+                if (! in_array('right', $away, true)) {
                     $crop_width = $crop_width + ($image->width() - $crop_width - $crop_x);
                 }
 
-                if(!in_array('bottom', $away, true)) {
+                if (! in_array('bottom', $away, true)) {
                     $crop_height = $crop_height + ($image->height() - $crop_height - $crop_y);
                 }
 
-                if(!in_array('left', $away, true)) {
+                if (! in_array('left', $away, true)) {
                     $crop_width += $crop_x;
                     $crop_x = 0;
                 }
 
-                if(!in_array('top', $away, true)) {
+                if (! in_array('top', $away, true)) {
                     $crop_height += $crop_y;
                     $crop_y = 0;
                 }

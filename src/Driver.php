@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips;
 
-use Jcupitt\Vips\Exception;
-use Jcupitt\Vips\Extend;
-use Jcupitt\Vips\BandFormat;
-use Jcupitt\Vips\Interpretation;
-use Jcupitt\Vips\Image as VipsImage;
 use Intervention\Image\AbstractColor;
 use Intervention\Image\AbstractDriver;
-use Intervention\Image\Image as InterventionImage;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Image as InterventionImage;
+use Jcupitt\Vips\BandFormat;
+use Jcupitt\Vips\Exception;
+use Jcupitt\Vips\Extend;
+use Jcupitt\Vips\Image as VipsImage;
+use Jcupitt\Vips\Interpretation;
 
 class Driver extends AbstractDriver
 {

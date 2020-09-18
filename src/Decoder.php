@@ -6,10 +6,10 @@ namespace Intervention\Image\Vips;
 
 use Imagick;
 use ImagickPixelException;
-use Jcupitt\Vips\Exception;
-use Jcupitt\Vips\Image as VipsImage;
 use Intervention\Image\AbstractDecoder;
 use Intervention\Image\Image as InterventionImage;
+use Jcupitt\Vips\Exception;
+use Jcupitt\Vips\Image as VipsImage;
 
 class Decoder extends AbstractDecoder
 {

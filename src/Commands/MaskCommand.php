@@ -22,11 +22,10 @@ class MaskCommand extends AbstractCommand
                              ->type('bool')
                              ->value(false);
 
-
         return $this->handleCommand(
-            function () use($image, $mask_source, $mask_w_alpha) {
+            function () use ($image, $mask_source, $mask_w_alpha) {
                 $mask = $image->getDriver()->init($mask_source);
-                if(
+                if (
                     $mask->width() !== $image->width() ||
                     $mask->height() !== $image->height()
                 ) {
@@ -34,8 +33,7 @@ class MaskCommand extends AbstractCommand
                 }
                 $mask = $mask->getCore();
                 /** @var Image $mask */
-
-                if($mask_w_alpha) {
+                if ($mask_w_alpha) {
                     $mask = $this->extractAlphaChannel($mask);
                 } else {
                     $mask = $mask->bandmean();
@@ -43,7 +41,7 @@ class MaskCommand extends AbstractCommand
 
                 /** @var Image $core */
                 $core = $image->getCore();
-                if($core->hasAlpha()) {
+                if ($core->hasAlpha()) {
                     $mask = $this->extractAlphaChannel($core)
                                  ->composite2($mask, BlendMode::DARKEN);
                     $core = $this->flattenImage($core);

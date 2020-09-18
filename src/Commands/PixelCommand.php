@@ -37,7 +37,7 @@ class PixelCommand extends AbstractCommand
             /** @var Image $core */
             $core = $image->getCore();
 
-            if(!$core->hasAlpha()) {
+            if (! $core->hasAlpha()) {
                 $core = $core->bandjoin_const(255);
             }
 
