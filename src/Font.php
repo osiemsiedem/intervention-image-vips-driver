@@ -81,8 +81,8 @@ class Font extends AbstractFont
         switch ($align.'-'.$valign) {
 
             case 'center-top':
-                $posx -= round(($box[6] + $box[4])/2);
-                $posy -= round(($box[7] + $box[5])/2);
+                $posx -= round(($box[6] + $box[4]) / 2);
+                $posy -= round(($box[7] + $box[5]) / 2);
                 break;
 
             case 'right-top':
@@ -97,25 +97,25 @@ class Font extends AbstractFont
 
             case 'center-center':
             case 'center-middle':
-                $posx -= round(($box[0] + $box[4])/2);
-                $posy -= round(($box[1] + $box[5])/2);
+                $posx -= round(($box[0] + $box[4]) / 2);
+                $posy -= round(($box[1] + $box[5]) / 2);
                 break;
 
             case 'right-center':
             case 'right-middle':
-                $posx -= round(($box[2] + $box[4])/2);
-                $posy -= round(($box[3] + $box[5])/2);
+                $posx -= round(($box[2] + $box[4]) / 2);
+                $posy -= round(($box[3] + $box[5]) / 2);
                 break;
 
             case 'left-center':
             case 'left-middle':
-                $posx -= round(($box[0] + $box[6])/2);
-                $posy -= round(($box[1] + $box[7])/2);
+                $posx -= round(($box[0] + $box[6]) / 2);
+                $posy -= round(($box[1] + $box[7]) / 2);
                 break;
 
             case 'center-bottom':
-                $posx -= round(($box[0] + $box[2])/2);
-                $posy -= round(($box[1] + $box[3])/2);
+                $posx -= round(($box[0] + $box[2]) / 2);
+                $posy -= round(($box[1] + $box[3]) / 2);
                 break;
 
             case 'right-bottom':
@@ -169,19 +169,18 @@ class Font extends AbstractFont
             $box = [
                 $core->xoffset,
                 $core->height,
-                $core->width+$core->xoffset,
+                $core->width + $core->xoffset,
                 $core->height,
-                $core->width+$core->xoffset,
+                $core->width + $core->xoffset,
                 0,
                 $core->xoffset,
-                0
+                0,
             ];
 
             if ($this->angle !== 0) {
-
                 $angle = deg2rad(360 - $this->angle);
 
-                for ($i=0; $i<4; $i++) {
+                for ($i = 0; $i < 4; $i++) {
                     $x = $box[$i * 2];
                     $y = $box[$i * 2 + 1];
                     $box[$i * 2] = cos($angle) * $x - sin($angle) * $y;
