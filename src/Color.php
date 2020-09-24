@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips;
 
+use ImagickPixel;
+use ImagickPixelException;
 use Intervention\Image\AbstractColor;
-use Intervention\Image\Exception\NotSupportedException;
 
 class Color extends AbstractColor
 {
@@ -88,13 +89,13 @@ class Color extends AbstractColor
     /**
      * Initiate the color from the ImagickPixel object.
      *
-     * @param  \ImagickPixel  $value
+     * @param  ImagickPixel  $value
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @throws ImagickPixelException
      */
     public function initFromObject($value)
     {
-        throw new NotSupportedException('VIPS color cannot be initiated from the ImagickPixel object.');
+        $this->initFromArray($value->getColor());
     }
 
     /**

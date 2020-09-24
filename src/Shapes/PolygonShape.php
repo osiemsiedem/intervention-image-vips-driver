@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Shapes;
 
 use Intervention\Image\Image;
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Exception\NotSupportedException;
 
 class PolygonShape extends AbstractShape
 {
@@ -33,10 +31,15 @@ class PolygonShape extends AbstractShape
      * @param  int  $x
      * @param  int  $y
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
-        throw new NotSupportedException('Polygon shape is not supported by VIPS driver.');
+        $this->applyToImageViaSVG(
+            $image,
+            'polygon',
+            [
+                'points' => implode(',', $this->points),
+            ] + $this->getSVGAttributes()
+        );
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Intervention\Image\Vips\Color;
+use Jcupitt\Vips\Image;
 
 class PixelCommand extends AbstractCommand
 {
@@ -33,7 +34,12 @@ class PixelCommand extends AbstractCommand
             ->value();
 
         return $this->handleCommand(function () use ($image, $color, $x, $y) {
+            /** @var Image $core */
             $core = $image->getCore();
+
+            if (! $core->hasAlpha()) {
+                $core = $core->bandjoin_const(255);
+            }
 
             $core = $core->draw_rect([$color->red, $color->green, $color->blue, $color->alpha], $x, $y, 1, 1);
 

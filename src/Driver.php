@@ -4,22 +4,23 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips;
 
-use Jcupitt\Vips\Extend;
-use Jcupitt\Vips\BandFormat;
-use Jcupitt\Vips\Interpretation;
-use Jcupitt\Vips\Image as VipsImage;
 use Intervention\Image\AbstractColor;
 use Intervention\Image\AbstractDriver;
-use Intervention\Image\Image as InterventionImage;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Image as InterventionImage;
+use Jcupitt\Vips\BandFormat;
+use Jcupitt\Vips\Exception;
+use Jcupitt\Vips\Extend;
+use Jcupitt\Vips\Image as VipsImage;
+use Jcupitt\Vips\Interpretation;
 
 class Driver extends AbstractDriver
 {
     /**
      * Create a new driver instance.
      *
-     * @param  \Intervention\Image\Vips\Decoder  $decoder
-     * @param  \Intervention\Image\Vips\Encoder  $encoder
+     * @param  \Intervention\Image\Vips\Decoder|null  $decoder
+     * @param  \Intervention\Image\Vips\Encoder|null  $encoder
      * @return void
      */
     public function __construct(Decoder $decoder = null, Encoder $encoder = null)
@@ -39,6 +40,7 @@ class Driver extends AbstractDriver
      * @param  int  $height
      * @param  mixed  $background
      * @return \Intervention\Image\Image
+     * @throws Exception
      */
     public function newImage($width, $height, $background = null): InterventionImage
     {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
+
 class BlurCommand extends AbstractCommand
 {
     /**
@@ -19,6 +21,7 @@ class BlurCommand extends AbstractCommand
             ->value(1);
 
         return $this->handleCommand(function () use ($image, $amount) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             $core = $core->gaussblur($amount * 0.53);

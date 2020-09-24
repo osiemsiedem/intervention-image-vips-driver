@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Shapes;
 
 use Intervention\Image\Image;
-use Intervention\Image\AbstractShape;
-use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Vips\Color;
 
 class LineShape extends AbstractShape
 {
@@ -72,10 +71,20 @@ class LineShape extends AbstractShape
      * @param  int  $x
      * @param  int  $y
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)
     {
-        throw new NotSupportedException('Line shape is not supported by VIPS driver.');
+        $this->applyToImageViaSVG(
+            $image,
+            'line',
+            [
+                'x1' => $this->x,
+                'y1' => $this->y,
+                'x2' => $x,
+                'y2' => $y,
+                'stroke-width' => $this->width,
+                'stroke' => (new Color($this->color))->getRgba(),
+            ]
+        );
     }
 }

@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips;
 
 use Imagick;
-use Jcupitt\Vips\Image as VipsImage;
+use ImagickPixelException;
 use Intervention\Image\AbstractDecoder;
 use Intervention\Image\Image as InterventionImage;
-use Intervention\Image\Exception\NotSupportedException;
+use Jcupitt\Vips\Exception;
+use Jcupitt\Vips\Image as VipsImage;
 
 class Decoder extends AbstractDecoder
 {
@@ -17,12 +18,13 @@ class Decoder extends AbstractDecoder
      *
      * @param  string  $path
      * @return \Intervention\Image\Image
+     * @throws \Jcupitt\Vips\Exception
      */
     public function initFromPath($path): InterventionImage
     {
         $options = [];
 
-        if ($accessMode = \getenv('VIPS_ACCESS_MODE')) {
+        if ($accessMode = getenv('VIPS_ACCESS_MODE')) {
             $options['access'] = $accessMode;
         }
 
@@ -37,6 +39,7 @@ class Decoder extends AbstractDecoder
      *
      * @param  string  $data
      * @return \Intervention\Image\Image
+     * @throws Exception
      */
     public function initFromBinary($data): InterventionImage
     {
@@ -46,7 +49,7 @@ class Decoder extends AbstractDecoder
     /**
      * Create a new image from the VIPS object.
      *
-     * @param  \Jcupitt\Vips\Image  $resource
+     * @param  \Jcupitt\Vips\Image  $object
      * @return \Intervention\Image\Image
      */
     public function initFromVips(VipsImage $object): InterventionImage
@@ -59,11 +62,22 @@ class Decoder extends AbstractDecoder
      *
      * @param  \Resource  $resource
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @throws Exception
      */
     public function initFromGdResource($resource)
     {
-        throw new NotSupportedException('VIPS driver cannot be initiated from the GD resource.');
+        ob_start();
+        imagepng($resource);
+        $stringdata = ob_get_clean();
+        $sizes = getimagesize($stringdata);
+
+        VipsImage::newFromMemory(
+            $stringdata,
+            $sizes[0],
+            $sizes[1],
+            $sizes['channels'],
+            'png'
+        );
     }
 
     /**
@@ -71,10 +85,16 @@ class Decoder extends AbstractDecoder
      *
      * @param  \Imagick  $object
      * @return void
-     * @throws \Intervention\Image\Exception\NotSupportedException
+     * @throws ImagickPixelException|Exception
      */
-    public function initFromImagick(Imagick $imagick)
+    public function initFromImagick(Imagick $object)
     {
-        throw new NotSupportedException('VIPS driver cannot be initiated from the Imagick object.');
+        VipsImage::newFromMemory(
+            $object->getImageBlob(),
+            $object->getImageWidth(),
+            $object->getImageHeight(),
+            count($object->getImagePixelColor(0, 0)->getColor()),
+            $object->getFormat()
+        );
     }
 }

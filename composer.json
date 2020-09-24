@@ -14,7 +14,8 @@
     "require": {
         "php": "^7.1",
         "intervention/image": "^2.4",
-        "jcupitt/vips": "^1.0"
+        "jcupitt/vips": "^1.0",
+        "phenx/php-font-lib": "^0.5.2"
     },
     "autoload": {
         "psr-4": {

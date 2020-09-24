@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Image;
-use Intervention\Image\Size;
-use Intervention\Image\Point;
 use Intervention\Image\Exception\InvalidArgumentException;
+use Jcupitt\Vips\Image;
+use Jcupitt\Vips\Interesting;
 
 class CropCommand extends AbstractCommand
 {
@@ -42,21 +41,15 @@ class CropCommand extends AbstractCommand
             ->type('digit')
             ->value();
 
-        $size = new Size($width, $height);
-
-        $position = new Point($x, $y);
-
-        return $this->handleCommand(function () use ($image, $width, $height, $x, $y, $size, $position) {
-            if (is_null($x) && is_null($y)) {
-                $position = $image
-                    ->getSize()
-                    ->align('center')
-                    ->relativePosition($size->align('center'));
-            }
-
+        return $this->handleCommand(function () use ($image, $width, $height, $x, $y) {
+            /** @var Image $core */
             $core = $image->getCore();
 
-            $core = $core->crop($position->x, $position->y, $size->width, $size->height);
+            if (is_null($x) || is_null($y)) {
+                $core = $core->smartcrop($width, $height, ['interesting' => Interesting::CENTRE]);
+            } else {
+                $core = $core->crop($x, $y, $width, $height);
+            }
 
             $image->setCore($core);
         });

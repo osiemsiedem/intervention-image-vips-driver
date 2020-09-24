@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Image;
-use Jcupitt\Vips\Extend;
 use Jcupitt\Vips\BlendMode;
+use Jcupitt\Vips\Extend;
+use Jcupitt\Vips\Image;
 
 class InsertCommand extends AbstractCommand
 {
@@ -37,7 +37,9 @@ class InsertCommand extends AbstractCommand
         return $this->handleCommand(function () use ($image, $source, $position, $x, $y) {
             $watermark = $image->getDriver()->init($source);
 
+            /** @var Image $imageCore */
             $imageCore = $image->getCore();
+            /** @var Image $watermarkCore */
             $watermarkCore = $watermark->getCore();
 
             $imageSize = $image->getSize()->align($position, $x, $y);
@@ -51,9 +53,9 @@ class InsertCommand extends AbstractCommand
                     'background' => [0, 0, 0, 0],
                 ]);
 
-                $imageCore = $imageCore->composite([$imageCore, $watermarkCore], BlendMode::OVER);
+                $imageCore = $imageCore->composite2($watermarkCore, BlendMode::OVER);
             } else {
-                $imageCore = $imageCore->insert($watermarkCore->bandjoin(255), $target->x, $target->y);
+                $imageCore = $imageCore->insert($watermarkCore->bandjoin_const(255), $target->x, $target->y);
             }
 
             $image->setCore($imageCore);

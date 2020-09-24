@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
+use Jcupitt\Vips\Image;
+
 class GammaCommand extends AbstractCommand
 {
     /**
@@ -20,6 +22,7 @@ class GammaCommand extends AbstractCommand
             ->value();
 
         return $this->handleCommand(function () use ($image, $gamma) {
+            /** @var Image $core */
             $core = $image->getCore();
 
             $core = $core->gamma(['exponent' => $gamma]);

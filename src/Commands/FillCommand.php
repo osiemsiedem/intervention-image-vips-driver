@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Extend;
-use Jcupitt\Vips\BlendMode;
+use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\Vips\Color;
-use Intervention\Image\Exception\NotReadableException;
+use Jcupitt\Vips\BlendMode;
+use Jcupitt\Vips\Extend;
 
 class FillCommand extends AbstractCommand
 {
@@ -31,6 +31,7 @@ class FillCommand extends AbstractCommand
             ->value();
 
         return $this->handleCommand(function () use ($image, $filling, $x, $y) {
+            /** @var \Jcupitt\Vips\Image $core */
             $core = $image->getCore();
 
             try {
@@ -39,30 +40,51 @@ class FillCommand extends AbstractCommand
                 $filling = new Color($filling);
             }
 
-            if (is_int($x) && is_int($y)) {
-                if ($filling instanceof Image) {
-                    //
-                } elseif ($filling instanceof Color) {
-                    //
-                }
-            } else {
-                if ($filling instanceof Image) {
-                    $overlayCore = $filling->getCore();
+            if ($filling instanceof Image) {
+                $overlayCore = $filling->getCore();
 
-                    $overlayCore = $overlayCore->embed(0, 0, $core->width, $core->height, [
+                $overlayCore = $overlayCore->embed(
+                    0,
+                    0,
+                    $core->width,
+                    $core->height,
+                    [
                         'extend'     => Extend::REPEAT,
-                        'background' => [0, 0, 0, 0],
-                    ]);
-
-                    $core = $core->composite([$core, $overlayCore], BlendMode::OVER);
-                } elseif ($filling instanceof Color) {
-                    $overlay = $image->getDriver()->newImage($core->width, $core->height, $filling->getArray());
-
-                    $overlayCore = $overlay->getCore();
-
-                    $core = $core->composite([$core, $overlayCore], BlendMode::OVER);
-                }
+                    ]
+                );
+            } elseif ($filling instanceof Color) {
+                $overlay = $image->getDriver()->newImage(
+                    $core->width,
+                    $core->height,
+                    $filling->getRgba()
+                );
+                $overlayCore = $overlay->getCore();
+            } else {
+                return;
             }
+
+            if (is_int($x) && is_int($y)) {
+                $mask = \Jcupitt\Vips\Image::black($core->width, $core->height);
+                $mask = $mask->draw_flood(
+                    [255],
+                    $x,
+                    $y,
+                    [
+                        'equal' => true,
+                        'test' => $core,
+                    ]
+                );
+
+                if ($overlayCore->hasAlpha()) {
+                    $mask = $mask->composite2(
+                        $this->extractAlphaChannel($overlayCore),
+                        BlendMode::DARKEN
+                    );
+                    $overlayCore = $this->flattenImage($overlayCore);
+                }
+                $overlayCore = $overlayCore->bandjoin($mask[0]);
+            }
+            $core = $core->composite2($overlayCore, BlendMode::OVER);
 
             $image->setCore($core);
         });
