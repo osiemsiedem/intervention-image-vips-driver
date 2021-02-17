@@ -24,7 +24,7 @@ class SharpenCommand extends AbstractCommand
         $max = $amount * -0.025;
         $abs = ((4 * $min + 4 * $max) * -1) + 1;
 
-        return $this->handleCommand(function () use ($image, $amount, $min, $max, $abs) {
+        return $this->handleCommand(function () use ($image, $min, $max, $abs) {
             $mask = Image::newFromArray([
                 [$min, $max, $min],
                 [$max, $abs, $max],
