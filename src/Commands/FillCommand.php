@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Commands;
 
-use Jcupitt\Vips\Extend;
-use Jcupitt\Vips\BlendMode;
+use Intervention\Image\Exception\NotReadableException;
 use Intervention\Image\Image;
 use Intervention\Image\Vips\Color;
-use Intervention\Image\Exception\NotReadableException;
+use Jcupitt\Vips\BlendMode;
+use Jcupitt\Vips\Extend;
 
 class FillCommand extends AbstractCommand
 {

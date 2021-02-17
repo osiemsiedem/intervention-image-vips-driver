@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips;
 
 use Imagick;
-use Jcupitt\Vips\Image as VipsImage;
 use Intervention\Image\AbstractDecoder;
-use Intervention\Image\Image as InterventionImage;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Image as InterventionImage;
+use Jcupitt\Vips\Image as VipsImage;
 
 class Decoder extends AbstractDecoder
 {

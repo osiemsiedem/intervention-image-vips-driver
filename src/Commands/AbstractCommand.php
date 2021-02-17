@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Intervention\Image\Vips\Commands;
 
 use Closure;
-use Jcupitt\Vips\Image;
-use Jcupitt\Vips\Exception;
 use Intervention\Image\Commands\AbstractCommand as BaseAbstractCommand;
+use Jcupitt\Vips\Exception;
+use Jcupitt\Vips\Image;
 
 abstract class AbstractCommand extends BaseAbstractCommand
 {

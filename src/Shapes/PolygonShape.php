@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Intervention\Image\Vips\Shapes;
 
-use Intervention\Image\Image;
 use Intervention\Image\AbstractShape;
 use Intervention\Image\Exception\NotSupportedException;
+use Intervention\Image\Image;
 
 class PolygonShape extends AbstractShape
 {
