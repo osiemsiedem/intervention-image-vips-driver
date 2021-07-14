@@ -57,7 +57,7 @@ class Encoder extends AbstractEncoder
             ]);
     }
     
-     /**
+    /**
      * Get the encoded image as AVIF string.
      *
      * @return void
