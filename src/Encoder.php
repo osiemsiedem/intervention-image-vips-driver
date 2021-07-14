@@ -56,6 +56,17 @@ class Encoder extends AbstractEncoder
                 'Q'         => $this->quality,
             ]);
     }
+    
+     /**
+     * Get the encoded image as GIF string.
+     *
+     * @return void
+     * @throws \Intervention\Image\Exception\NotSupportedException
+     */
+    protected function processAvif()
+    {
+        throw new NotSupportedException('AVIF format is not supported by VIPS driver.');
+    }
 
     /**
      * Get the encoded image as GIF string.
