@@ -56,7 +56,7 @@ class Encoder extends AbstractEncoder
                 'Q'         => $this->quality,
             ]);
     }
-    
+
     /**
      * Get the encoded image as AVIF string.
      *
