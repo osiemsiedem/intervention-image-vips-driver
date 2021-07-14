@@ -58,7 +58,7 @@ class Encoder extends AbstractEncoder
     }
     
      /**
-     * Get the encoded image as GIF string.
+     * Get the encoded image as AVIF string.
      *
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
