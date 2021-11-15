@@ -74,7 +74,7 @@ class Encoder extends AbstractEncoder
      * @return void
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
-    protected function Heic()
+    protected function processHeic()
     {
         throw new NotSupportedException('Heic format is not supported by VIPS driver.');
     }
