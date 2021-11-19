@@ -40,6 +40,7 @@ class EllipseShape extends AbstractShape
      * @param  int  $x
      * @param  int  $y
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function applyToImage(Image $image, $x = 0, $y = 0)

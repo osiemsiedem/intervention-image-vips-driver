@@ -15,6 +15,7 @@ class CropCommand extends AbstractCommand
      *
      * @param  \Intervention\Image\Image  $image
      * @return bool
+     *
      * @throws \Intervention\Image\Exception\InvalidArgumentException
      */
     public function execute($image): bool
