@@ -67,6 +67,17 @@ class Encoder extends AbstractEncoder
     {
         throw new NotSupportedException('AVIF format is not supported by VIPS driver.');
     }
+    
+    /**
+     * Get the encoded image as Heic string.
+     *
+     * @return void
+     * @throws \Intervention\Image\Exception\NotSupportedException
+     */
+    protected function processHeic()
+    {
+        throw new NotSupportedException('Heic format is not supported by VIPS driver.');
+    }
 
     /**
      * Get the encoded image as GIF string.
