@@ -78,7 +78,7 @@ class Encoder extends AbstractEncoder
      */
     protected function processHeic()
     {
-        throw new NotSupportedException('Heic format is not supported by VIPS driver.');
+        throw new NotSupportedException('HEIC format is not supported by VIPS driver.');
     }
 
     /**
