@@ -16,6 +16,7 @@ abstract class AbstractCommand extends BaseAbstractCommand
      *
      * @param  \Jcupitt\Vips\Image  $image
      * @return \Jcupitt\Vips\Image
+     *
      * @link   https://github.com/jcupitt/libvips/issues/59#issuecomment-222351004
      */
     protected function flattenImage(Image $image): Image
@@ -51,6 +52,7 @@ abstract class AbstractCommand extends BaseAbstractCommand
      *
      * @param  \Jcupitt\Vips\Image  $image
      * @return \Jcupitt\Vips\Image
+     *
      * @link   https://github.com/jcupitt/libvips/issues/59#issuecomment-222351004
      */
     protected function extractAlphaChannel(Image $image): Image

@@ -13,6 +13,7 @@ class LimitColorsCommand extends AbstractCommand
      *
      * @param  \Intervention\Image\Image  $image
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function execute($image)

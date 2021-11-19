@@ -90,6 +90,7 @@ class Color extends AbstractColor
      *
      * @param  \ImagickPixel  $value
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function initFromObject($value)

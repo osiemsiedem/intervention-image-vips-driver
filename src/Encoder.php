@@ -61,17 +61,19 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as AVIF string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processAvif()
     {
         throw new NotSupportedException('AVIF format is not supported by VIPS driver.');
     }
-    
+
     /**
      * Get the encoded image as Heic string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processHeic()
@@ -83,6 +85,7 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as GIF string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processGif()
@@ -94,6 +97,7 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as TIFF string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processTiff()
@@ -105,6 +109,7 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as BMP string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processBmp()
@@ -116,6 +121,7 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as ICO string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processIco()
@@ -127,6 +133,7 @@ class Encoder extends AbstractEncoder
      * Get the encoded image as PSD string.
      *
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     protected function processPsd()

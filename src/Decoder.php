@@ -57,8 +57,9 @@ class Decoder extends AbstractDecoder
     /**
      * Create a new image from the GD resource.
      *
-     * @param  \Resource  $resource
+     * @param  \resource  $resource
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function initFromGdResource($resource)
@@ -71,6 +72,7 @@ class Decoder extends AbstractDecoder
      *
      * @param  \Imagick  $object
      * @return void
+     *
      * @throws \Intervention\Image\Exception\NotSupportedException
      */
     public function initFromImagick(Imagick $imagick)
