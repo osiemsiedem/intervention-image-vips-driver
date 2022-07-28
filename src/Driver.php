@@ -76,6 +76,10 @@ class Driver extends AbstractDriver
      */
     protected function coreAvailable(): bool
     {
-        return extension_loaded('vips') && class_exists(VipsImage::class);
+        if (! class_exists(VipsImage::class)) {
+            return false;
+        }
+
+        return extension_loaded('ffi') || extension_loaded('vips');
     }
 }

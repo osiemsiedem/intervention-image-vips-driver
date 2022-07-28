@@ -6,8 +6,8 @@ This is a work in progress.
 
 ## Requirements
 
-- PHP >= 7.1
-- ext-vips >= 0.1.2
+- PHP >= 7.2
+- ext-vips >= 0.1.2 (or ext-ffi)
 
 ## Installation
 
