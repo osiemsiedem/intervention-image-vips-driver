@@ -66,7 +66,12 @@ class Encoder extends AbstractEncoder
      */
     protected function processAvif()
     {
-        throw new NotSupportedException('AVIF format is not supported by VIPS driver.');
+        return $this->image
+            ->getCore()
+            ->writeToBuffer('.avif', [
+                'lossless'  => false,
+                'Q'         => $this->quality,
+            ]);
     }
 
     /**
