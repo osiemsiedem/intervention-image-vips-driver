@@ -17,7 +17,7 @@ class ResizeCanvasCommand extends AbstractCommand
      * @param  \Intervention\Image\Image  $image
      * @return bool
      */
-    public function execute($image)
+    public function execute($image): bool
     {
         $width = $this->argument(0)->type('digit')->required()->value();
         $height = $this->argument(1)->type('digit')->required()->value();
