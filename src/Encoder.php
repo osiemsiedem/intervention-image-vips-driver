@@ -66,9 +66,10 @@ class Encoder extends AbstractEncoder
     {
         return $this->image
             ->getCore()
-            ->writeToBuffer('.avif', [
+            ->writeToBuffer('.heif', [
                 'lossless'  => false,
-                'Q'         => $this->quality,
+                'Q' => $this->quality,
+                'compression' => 'av1',
             ]);
     }
 
