@@ -43,7 +43,6 @@ class ResizeCanvasCommand extends AbstractCommand
 
         return $this->handleCommand(
             function () use ($image, $width, $height, $anchor, $bgcolor) {
-
                 /** @var Image $core */
                 $core = $image->getCore();
 
